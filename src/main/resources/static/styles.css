@@ -1,0 +1,58 @@
+.clients-table {
+    border-collapse: collapse; /* Убираем двойные границы ячеек */
+
+}
+
+body {
+    background-image: url('images/background.jpg'); /* Путь к изображению */
+    background-size: cover; /* Изображение растягивается, чтобы покрыть весь фон */
+    height:100%;
+    background-repeat: no-repeat;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.clients-table th,
+.clients-table td {
+    padding: 8px; /* Добавляем отступы внутри ячеек */
+    text-align: left; /* Выравниваем текст по левому краю */
+    border-bottom: 1px solid #ddd; /* Добавляем нижнюю границу для всех ячеек, кроме последней в строке */
+}
+
+.clients-table th {
+    background-color: #f0f0f0; /* Добавляем фон для заголовков */
+}
+
+.clients-table tr:last-child td {
+    border-bottom: none; /* Убираем нижнюю границу для последней строки */
+}
+
+/* Стили для ссылок */
+.clients-table a {
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+    color: #007bff; /* Цвет текста ссылок */
+    margin-right: 10px;
+}
+
+.clients-table a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* Добавляем стили для контейнера, который будет содержать оба блока */
+.container {
+    display: flex; /* Используем flexbox */
+    justify-content: left;
+    align-items: normal;
+}
+
+/* Убираем атрибут align="center" из тегов div, так как мы будем использовать flexbox для выравнивания */
+.container div {
+    text-align: left;
+    margin-right: 50px;
+}
+
+.error-message {
+    color: red;
+    margin-left: 5px; /* Отступ слева, чтобы сообщение было рядом с полем ввода */
+}

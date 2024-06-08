@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Адреса клиента</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+</head>
+<body>
+<div align="center">
+    <h1>Добавление адреса клиенту</h1>
+    <hr>
+    <form th:action="@{/address/create-address}" th:object="${address}" method="post">
+
+        <label for="ip">IP-адрес:</label>
+        <input type="text" id="ip" name="ip" th:field="*{ip}">
+        <div th:if="${#fields.hasErrors('ip')}" class="error-message" th:errors="*{ip}"></div>
+        <br>
+        <label for="mac">MAC-адрес:</label>
+        <input type="text" id="mac" name="mac" th:field="*{mac}">
+        <div th:if="${#fields.hasErrors('mac')}" class="error-message" th:errors="*{mac}"></div>
+        <br>
+        <label for="model">Модель:</label>
+        <input type="text" id="model" name="model" th:field="*{model}">
+        <div th:if="${#fields.hasErrors('model')}" class="error-message" th:errors="*{model}"></div>
+        <br>
+        <label for="address">Адрес места нахождения:</label>
+        <input type="text" id="address" name="address" th:field="*{address}">
+        <div th:if="${#fields.hasErrors('address')}" class="error-message" th:errors="*{address}"></div>
+        <br>
+        <button>Добавить адрес</button>
+        <br>
+        <a th:href="@{/client-address}">Все клиенты</a>
+    </form>
+</div>
+</body>
+</html>

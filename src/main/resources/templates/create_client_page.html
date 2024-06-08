@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление нового клиента</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+</head>
+<body>
+<div align="center">
+    <h1>Введите информацию о клиенте:</h1>
+    <form th:action="@{/client/create-client}" th:object="${client}" method="post">
+    <hr>
+        <label for="name">Имя:</label>
+    <input type="text" id="name" th:field="*{clientName}">
+        <div th:if="${#fields.hasErrors('clientName')}" class="error-message" th:errors="*{clientName}"></div>
+        <br>
+    <label for="type">Тип:</label>
+    <select name="type" id="type" th:field="*{clientType}">
+        <option value="Юридическое лицо">Юридическое лицо</option>
+        <option value="Физическое лицо">Физическое лицо</option>
+    </select>
+        <div th:if="${#fields.hasErrors('clientType')}" class="error-message" th:errors="*{clientType}"></div>
+        <br>
+    <label for="ip">IP-адрес:</label>
+    <input type="text" id="ip" th:field="*{ip}">
+        <div th:if="${#fields.hasErrors('ip')}" class="error-message" th:errors="*{ip}"></div>
+        <br>
+    <label for="mac">MAC-адрес:</label>
+    <input type="text" id="mac" th:field="*{mac}">
+        <div th:if="${#fields.hasErrors('mac')}" class="error-message" th:errors="*{mac}"></div>
+        <br>
+    <label for="model">Модель:</label>
+    <input type="text" id="model" th:field="*{model}">
+        <div th:if="${#fields.hasErrors('model')}" class="error-message" th:errors="*{model}"></div>
+        <br>
+    <label for="address">Адрес клиента:</label>
+    <input type="text" id="address" th:field="*{address}">
+        <div th:if="${#fields.hasErrors('address')}" class="error-message" th:errors="*{address}"></div>
+        <br>
+    <button>Добавить клиента</button>
+    <br>
+    <a th:href="@{/client-address}">Все клиенты</a>
+    </form>
+</div>
+</body>
+</html>

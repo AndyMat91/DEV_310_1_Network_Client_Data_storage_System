@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Все клиенты</title>
+    <link th:href="@{/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<div align="center">
+    <h1>Все клиенты</h1>
+    <hr>
+    <table class="clients-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Тип</th>
+            <th>Время создания</th>
+            <th>IP-адрес</th>
+            <th>MAC-адрес</th>
+            <th>Модель</th>
+            <th>Адрес места нахождения</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client:${clients}">
+            <td th:text="${client.getClientId()}"></td>
+            <td th:text="${client.getClientName()}"></td>
+            <td th:text="${client.getClientType()}"></td>
+            <td th:text="${client.getDatereg()}"></td>
+            <td th:text="${client.getIp()}"></td>
+            <td th:text="${client.getMac()}"></td>
+            <td th:text="${client.getModel()}"></td>
+            <td th:text="${client.getAddress()}"></td>
+            <td>
+                <a th:href="@{/address/remove-address/{mac}/{id}(id=${client.getClientId()}, mac=${client.getMac()})}">удалить</a>
+                <a th:href="@{/address/{id}(id=${client.getClientId()})}">добавить адрес</a>
+                <a th:href="@{/client/update-client/{id}(id=${client.getClientId()})}">изменить данные клиента</a>
+                <a th:href="@{/address/update-address/{id}/{mac}(mac=${client.getMac()}, id=${client.getClientId()})}">изменить
+                    адрес</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/client/add-new-client}">Добавить нового клиента</a>
+
+</div>
+<div class="container">
+    <div>
+        <form th:action="@{/client-address}" th:object="${filters}" method="get">
+            <h2>Фильтрация</h2>
+            <label for="type">Тип клиента:</label>
+            <select name="type" id="type" th:field="*{filterType}">
+                <option value="--> Выберите тип <--">"--> Выберите тип <--"</option>
+                <option value="Юридическое лицо">Юридическое лицо</option>
+                <option value="Физическое лицо">Физическое лицо</option>
+            </select>
+            <br>
+            <label for="search">Поиск по имени или адресу:</label>
+            <input type="text" id="search" name="search" placeholder="Введите текст для поиска" th:field="*{filterNameOrAddress}">
+            <br>
+            <input type="submit" value="Применить фильтр">
+        </form>
+
+        <br>
+        <h2>Удаление клиента</h2>
+        <p>Введите ID клиента, которого хотите удалить:</p>
+        <input type="text" id="deleteId" placeholder="ID клиента">
+        <button onclick="deleteClient()">Удалить клиента</button>
+    </div>
+</div>
+<script>
+    function deleteClient() {
+        var deleteId = document.getElementById('deleteId').value;
+        var href = '/client-address/remove/${clientId}';
+        href = href.replace('${clientId}', deleteId);
+        window.location.href = href;
+    }
+
+</script>
+</body>
+</html>

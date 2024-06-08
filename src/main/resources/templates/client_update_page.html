@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма обновления данных клиента</title>
+    <link th:href="@{/styles.css}" rel="stylesheet"/>
+</head>
+<div align="center">
+    <h1>Обновить данные клиента</h1>
+    <form th:action="@{/client/save-update-client}" th:object="${client}" method="post">
+
+        <input type="text" th:field="*{clientId}" th:value="${client.getClientId()}" hidden>
+        <input type="text" th:field="*{datereg}" th:value="${client.getDatereg()}" hidden>
+        <label for="clientName">Имя клиента:</label>
+        <input type="text" id="clientName" th:field="*{clientName}" th:value="${client.getClientName()}">
+        <div th:if="${#fields.hasErrors('clientName')}" class="error-message" th:errors="*{clientName}"></div>
+        <br>
+        <label for="type">Тип:</label>
+        <select name="type" id="type" th:field="*{clientType}">
+            <option value="Юридическое лицо">Юридическое лицо</option>
+            <option value="Физическое лицо">Физическое лицо</option>
+        </select>
+        <div th:if="${#fields.hasErrors('clientType')}" class="error-message" th:errors="*{clientType}"></div>
+        <br><br>
+        <button>Обновить данные клиента</button>
+    </form>
+</div>
+</html>

@@ -1,0 +1,19 @@
+server:
+  port: 8000
+
+spring:
+  application: name=DEV_310_1_Network_Client_Data_storage_System
+  datasource:
+    url: jdbc:mysql://localhost:3306/client_db
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.MySQL8Dialect
+  security:
+    user:
+      name: admin
+      password: admin
